@@ -23,7 +23,7 @@ class ServiceLocator internal constructor() {
 
     inline fun <reified T> inject(named: String = ""): Lazy<T> {
         val identifier = Identifier(T::class, named)
-        return resolveDependency(identifier)
+        return lazy { resolveDependency(identifier) }
     }
 
     inline fun <reified T : ViewModel> getViewModel(viewModelStore: ViewModelStoreOwner): Lazy<T> {
